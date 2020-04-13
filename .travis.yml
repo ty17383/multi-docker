@@ -20,3 +20,24 @@ after_success:
     - docker push tytheguy/multi-nginx
     - docker push tytheguy/multi-server
     - docker push tytheguy/multi-worker
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: multi-docker
+    env: MultiDocker-env
+    bucket_name: elasticbeanstalk-us-east-2-081733717121
+    bucket_path: docker-multi
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+
+    # deploy:
+    #     edge: true
+    #     provider: elasticbeanstalk
+
+
+    # access_key_id: $AWS_ACCESS_KEY
+    # secret_access_key: $AWS_SECRET_KEY

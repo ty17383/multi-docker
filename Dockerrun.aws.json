@@ -1,0 +1,39 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "tytheguy/multi-client",
+            "hostname": "client",
+            "essential": false
+        
+        },
+        {
+            "name": "server",
+            "image": "tytheguy/multi-server",
+            "hostname": "api",
+            "essential": false
+        
+        },
+        {
+            "name": "worker",
+            "image": "tytheguy/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        
+        },
+        {
+            "name": "nginx",
+            "image": "tytheguy/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 3050
+                }
+            ],
+            "links": ["client", "server"]
+        }
+    ]
+}
